@@ -120,3 +120,12 @@ erDiagram
 		VARCHAR(255) content_tag_code
 	}
 ```
+---
+
+### Roadmap 
+[x] Phase 1: DB & ERD Design - Finalized PostgreSQL DDL schema with proper FK constraints.
+[ ] Phase 2: UI/UX Wireframe & Auth - Set up React project, Tailwind CSS, and user signup/login flow.
+[ ] Phase 3: Core Logging Features - Implement daily word entry forms with unlimited entries and image uploads.
+[ ] Phase 4: Calendar & List View - Build daily check-in calendar and timeline feeds.
+[ ] Phase 5: Summary Dashboard - Create keyword frequency charts and monthly trend analytics.
+[ ] Phase 6: Community Feed (Future) - Optional public sharing (public_yn) for encouragement and community posts.
