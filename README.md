@@ -51,6 +51,11 @@ erDiagram
 		UUID user_detail_code
 		VARCHAR(255) name
 		DATE birth_date
+		VARCHAR(255) donomination_code
+		int worship_count
+		BOOLEAN is_serving
+		BOOLEAN do_qt
+		VARCHAR(255) qt_media
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
@@ -58,9 +63,9 @@ erDiagram
 	}
 
 	category {
-		VARCHAR(255) category_code
+		BigInt category_code
 		VARCHAR(255) category_name
-		VARCHAR(255) parent_category_code
+		BigInt parent_category_code
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
