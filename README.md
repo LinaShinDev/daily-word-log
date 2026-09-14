@@ -63,6 +63,19 @@ erDiagram
 		UUID login_user_code
 	}
 
+	USER_SETTING {
+        bigint user_setting_code PK
+        uuid user_detail_code FK
+        boolean ai_book_recommend_yn
+        boolean qt_check_yn
+        boolean daily_prayer_yn
+        boolean examen_prayer_yn
+        time qt_notify_time
+        time daily_prayer_notify_time
+        time examen_prayer_notify_time
+        timestamp updated_dt
+    }
+
 	category {
 		BigInt category_code
 		VARCHAR(255) category_name
