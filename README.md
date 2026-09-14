@@ -56,6 +56,7 @@ erDiagram
 		BOOLEAN is_serving
 		BOOLEAN do_qt
 		VARCHAR(255) qt_media
+		VARCHAR(255) qt_etc
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
