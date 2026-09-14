@@ -65,9 +65,9 @@ erDiagram
 		UUID login_user_code
 	}
 
-	USER_SETTING {
-        bigint user_setting_code PK
-        uuid user_detail_code FK
+	user_setting {
+        bigint user_setting_code
+        uuid user_detail_code
         boolean ai_book_recommend_yn
         boolean qt_check_yn
         boolean daily_prayer_yn
