@@ -37,7 +37,9 @@ erDiagram
 	daily_log ||--o{ word_entries : references
 	user_detail ||--o{ user_tag : references
 	content_tag ||--o{ user_tag : references
+	user_detail ||--o| user_setting : references
 
+	
 	login_user {
 		UUID login_user_code
 		VARCHAR(255) email
