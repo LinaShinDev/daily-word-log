@@ -34,7 +34,6 @@ erDiagram
     user_detail ||--o{ user_qt : references
     user_detail ||--o{ daily_log : references
     institute ||--o{ user_qt : references
-    user_qt ||--o{ daily_log : references
     daily_log ||--o{ word_entries : references
     user_detail ||--o{ user_tag : references
     content_tag ||--o{ user_tag : references
@@ -111,7 +110,6 @@ erDiagram
 
 	daily_log {
 		BigInt daily_log_code
-		BigInt user_qt_code
 		UUID user_detail_code
 		DATE meditation_date
 		BOOLEAN is_completed
