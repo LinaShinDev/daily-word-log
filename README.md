@@ -29,15 +29,17 @@
 ```mermaid 
 erDiagram
 	login_user ||--o{ user_detail : references
-	category ||--o{ category : references
-	category ||--o{ institute : references
-	user_detail ||--o{ user_qt : references
-	institute ||--o{ user_qt : references
-	user_qt ||--o{ daily_log : references
-	daily_log ||--o{ word_entries : references
-	user_detail ||--o{ user_tag : references
-	content_tag ||--o{ user_tag : references
-	user_detail ||--o| user_setting : references
+    category ||--o{ category : references
+    category ||--o{ institute : references
+    user_detail ||--o{ user_qt : references
+    user_detail ||--o{ daily_log : references
+    institute ||--o{ user_qt : references
+    user_qt ||--o{ daily_log : references
+    daily_log ||--o{ word_entries : references
+    user_detail ||--o{ user_tag : references
+    content_tag ||--o{ user_tag : references
+    word_entries ||--o{ user_tag : references
+    user_detail ||--o| user_setting : references
 
 	
 	login_user {
@@ -53,7 +55,7 @@ erDiagram
 		UUID user_detail_code
 		VARCHAR(255) name
 		DATE birth_date
-		VARCHAR(255) donomination_code
+		BigInt donomination_code
 		int worship_count
 		BOOLEAN is_serving
 		BOOLEAN do_qt
@@ -66,12 +68,12 @@ erDiagram
 	}
 
 	user_setting {
-        bigint user_setting_code
-        uuid user_detail_code
-        boolean ai_book_recommend_yn
-        boolean qt_check_yn
-        boolean daily_prayer_yn
-        boolean examen_prayer_yn
+        BigInt user_setting_code
+        UUID user_detail_code
+        BOOLEAN ai_book_recommend_yn
+        BOOLEAN qt_check_yn
+        BOOLEAN daily_prayer_yn
+        BOOLEAN examen_prayer_yn
         time qt_notify_time
         time daily_prayer_notify_time
         time examen_prayer_notify_time
@@ -88,18 +90,18 @@ erDiagram
 	}
 
 	institute {
-		VARCHAR(255) institute_code
+		BigInt institute_code
 		VARCHAR(255) institute_name
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
-		VARCHAR(255) institute_type_code
+		BigInt institute_type_code
 	}
 
 	user_qt {
-		VARCHAR(255) user_qt_code
+		BigInt user_qt_code
 		DATE start_dt
-		VARCHAR(255) institute_code
+		BigInt institute_code
 		DATE end_dt
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
@@ -108,8 +110,9 @@ erDiagram
 	}
 
 	daily_log {
-		VARCHAR(255) daily_log_code
-		VARCHAR(255) user_qt_code
+		BigInt daily_log_code
+		BigInt user_qt_code
+		UUID user_detail_code
 		DATE meditation_date
 		BOOLEAN is_completed
 		TIMESTAMPTZ insert_dt
@@ -118,7 +121,7 @@ erDiagram
 	}
 
 	word_entries {
-		VARCHAR(255) word_entry_code
+		UUID word_entry_code
 		TEXT bible_verse
 		TEXT content
 		TIMESTAMPTZ insert_dt
@@ -129,7 +132,7 @@ erDiagram
 	}
 
 	content_tag {
-		VARCHAR(255) content_tag_code
+		BigInt content_tag_code
 		VARCHAR(255) tag_name
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
@@ -138,7 +141,8 @@ erDiagram
 
 	user_tag {
 		UUID user_detail_code
-		VARCHAR(255) content_tag_code
+		BigInt content_tag_code
+		UUID word_entry_code
 	}
 ```
 ---
