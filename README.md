@@ -31,6 +31,7 @@ erDiagram
 	login_user ||--o{ user_detail : references
     category ||--o{ category : references
     category ||--o{ institute : references
+	category ||--o{ user_detail : references
     user_detail ||--o{ user_qt : references
     user_detail ||--o{ daily_log : references
     institute ||--o{ user_qt : references
@@ -42,7 +43,7 @@ erDiagram
 
 	
 	login_user {
-		UUID login_user_code
+		UUID login_user_code PK
 		VARCHAR(255) email
 		VARCHAR(255) enc_pw
 		TIMESTAMPTZ insert_dt
@@ -51,24 +52,24 @@ erDiagram
 	}
 
 	user_detail {
-		UUID user_detail_code
+		UUID user_detail_code PK
 		VARCHAR(255) name
 		DATE birth_date
-		BigInt donomination_code
+		BigInt denomination_code FK "category.category_code"
 		int worship_count
 		BOOLEAN is_serving
 		BOOLEAN do_qt
-		VARCHAR(255) qt_media
+		BigInt qt_media FK "category.category_code"
 		VARCHAR(255) qt_etc
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
-		UUID login_user_code
+		UUID login_user_code FK
 	}
 
 	user_setting {
-        BigInt user_setting_code
-        UUID user_detail_code
+        BigInt user_setting_code PK
+        UUID user_detail_code FK
         BOOLEAN ai_book_recommend_yn
         BOOLEAN qt_check_yn
         BOOLEAN daily_prayer_yn
@@ -80,37 +81,38 @@ erDiagram
     }
 
 	category {
-		BigInt category_code
+		BigInt category_code PK
 		VARCHAR(255) category_name
-		BigInt parent_category_code
+		BigInt parent_category_code FK "category.category_code"
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
 	}
 
 	institute {
-		BigInt institute_code
+		BigInt institute_code PK
 		VARCHAR(255) institute_name
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
-		BigInt institute_type_code
+		BigInt institute_type_code FK "category.category_code"
 	}
 
 	user_qt {
-		BigInt user_qt_code
+		BigInt user_qt_code PK
 		DATE start_dt
-		BigInt institute_code
+		BigInt institute_code FK
 		DATE end_dt
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
-		UUID user_detail_code
+		UUID user_detail_code FK
 	}
 
 	daily_log {
-		BigInt daily_log_code
-		UUID user_detail_code
+		BigInt daily_log_code PK
+		UUID user_detail_code FK
+		Varchar(255) type 
 		DATE meditation_date
 		BOOLEAN is_completed
 		TIMESTAMPTZ insert_dt
@@ -119,18 +121,18 @@ erDiagram
 	}
 
 	word_entries {
-		UUID word_entry_code
+		UUID word_entry_code PK
 		TEXT bible_verse
 		TEXT content
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
-		VARCHAR(255) daily_log_code
+		BigInt daily_log_code FK
 		BOOLEAN public_yn
 	}
 
 	content_tag {
-		BigInt content_tag_code
+		BigInt content_tag_code PK
 		VARCHAR(255) tag_name
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
@@ -138,9 +140,9 @@ erDiagram
 	}
 
 	user_tag {
-		UUID user_detail_code
-		BigInt content_tag_code
-		UUID word_entry_code
+		UUID user_detail_code PK, FK
+		BigInt content_tag_code PK, FK
+		UUID word_entry_code PK, FK
 	}
 ```
 ---
