@@ -124,6 +124,7 @@ erDiagram
 		UUID word_entry_code PK
 		TEXT bible_verse
 		TEXT content
+		Varchar(20) category
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
