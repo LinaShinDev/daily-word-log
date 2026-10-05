@@ -76,6 +76,7 @@ erDiagram
         BOOLEAN qt_check_yn
         BOOLEAN daily_prayer_yn
         BOOLEAN examen_prayer_yn
+		VARCHAR(10) language_code
         time qt_notify_time
         time daily_prayer_notify_time
         time examen_prayer_notify_time
