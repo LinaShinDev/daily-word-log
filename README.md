@@ -32,6 +32,7 @@ erDiagram
     category ||--o{ category : references
     category ||--o{ institute : references
 	category ||--o{ user_detail : references
+	category ||--o{ daily_quotes : references
     user_detail ||--o{ user_qt : references
     user_detail ||--o{ daily_log : references
     institute ||--o{ user_qt : references
@@ -40,6 +41,7 @@ erDiagram
     content_tag ||--o{ user_tag : references
     word_entries ||--o{ user_tag : references
     user_detail ||--o| user_setting : references
+	daily_quotes ||--o{ quote_translation : references
 
 	
 	login_user {
@@ -145,6 +147,29 @@ erDiagram
 		BigInt content_tag_code PK, FK
 		UUID word_entry_code PK, FK
 	}
+
+	daily_quotes {
+		BIGINT daily_quote_code PK
+	    BIGINT category_code
+	    VARCHAR(255) source
+		TIMESTAMPTZ insert_dt
+		TIMESTAMPTZ update_dt
+		TIMESTAMPTZ delete_dt
+	}
+
+	quote_translation {
+		BIGINT quote_translation_code PK
+	    BIGINT daily_quote_code
+	    VARCHAR(10) language_code
+	    TEXT content
+	    TEXT meditation_guide 
+	    VARCHAR(255) keyword 
+	    TIMESTAMPTZ insert_dt
+		TIMESTAMPTZ update_dt
+		TIMESTAMPTZ delete_dt
+	}
+
+
 ```
 ---
 
