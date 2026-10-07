@@ -35,6 +35,7 @@ erDiagram
 	category ||--o{ daily_quotes : references
     user_detail ||--o{ user_qt : references
     user_detail ||--o{ daily_log : references
+	user_detail ||--o{ weekly_goals : references
     institute ||--o{ user_qt : references
     daily_log ||--o{ word_entries : references
     user_detail ||--o{ user_tag : references
@@ -42,6 +43,7 @@ erDiagram
     word_entries ||--o{ user_tag : references
     user_detail ||--o| user_setting : references
 	daily_quotes ||--o{ quote_translation : references
+	
 
 	
 	login_user {
@@ -165,9 +167,26 @@ erDiagram
 	    TEXT content
 	    TEXT meditation_guide 
 	    VARCHAR(255) keyword 
-	    TIMESTAMPTZ insert_dt
+	   cTIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
+	}
+
+	weekly_goals {
+	    BIGSERIAL weekly_goal_code PK
+	    BIGINT user_detail_code 
+	    DATE start_date 
+	    VARCHAR(255) goal_content
+	    BOOLEAN is_sun 
+	    BOOLEAN is_mon 
+	    BOOLEAN is_tue 
+	    BOOLEAN is_wed 
+	    BOOLEAN is_thu 
+	    BOOLEAN is_fri 
+	    BOOLEAN is_sat
+	    
+	   	TIMESTAMPTZ insert_dt
+		TIMESTAMPTZ update_dt
 	}
 
 
