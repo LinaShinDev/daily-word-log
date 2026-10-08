@@ -184,6 +184,7 @@ erDiagram
 	    BOOLEAN is_thu 
 	    BOOLEAN is_fri 
 	    BOOLEAN is_sat
+		BOOLEAN is_copied
 	    
 	   	TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
