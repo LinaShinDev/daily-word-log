@@ -226,7 +226,7 @@ erDiagram
 	}
 
 	user_book_status {
-		BIGSERIAL status_code 
+		BIGSERIAL status_code PK
 	    UUID user_detail_code 
 	    BigInt book_item_code 
 	    status 
