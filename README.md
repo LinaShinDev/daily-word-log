@@ -50,6 +50,7 @@ erDiagram
     category ||--o{ institute : references
 	category ||--o{ user_detail : references
 	category ||--o{ daily_quotes : references
+	category ||--o{ book_item : references
     user_detail ||--o{ user_qt : references
     user_detail ||--o{ daily_log : references
 	user_detail ||--o{ weekly_goals : references
@@ -59,7 +60,9 @@ erDiagram
     content_tag ||--o{ user_tag : references
     word_entries ||--o{ user_tag : references
     user_detail ||--o| user_setting : references
+	user_detail ||--o{ user_book_status : references
 	daily_quotes ||--o{ quote_translation : references
+	book_item ||--o{ user_book_status : references
 	
 
 	
@@ -169,8 +172,8 @@ erDiagram
 	}
 
 	daily_quotes {
-		BIGINT daily_quote_code PK
-	    BIGINT category_code
+		BigInt daily_quote_code PK
+	    BigInt category_code
 	    VARCHAR(255) source
 		TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
@@ -178,20 +181,20 @@ erDiagram
 	}
 
 	quote_translation {
-		BIGINT quote_translation_code PK
-	    BIGINT daily_quote_code
+		BigInt quote_translation_code PK
+	    BigInt daily_quote_code
 	    VARCHAR(10) language_code
 	    TEXT content
 	    TEXT meditation_guide 
 	    VARCHAR(255) keyword 
-	   cTIMESTAMPTZ insert_dt
+	   	TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 		TIMESTAMPTZ delete_dt
 	}
 
 	weekly_goals {
 	    BIGSERIAL weekly_goal_code PK
-	    BIGINT user_detail_code 
+	    BigInt user_detail_code 
 	    DATE start_date 
 	    VARCHAR(255) goal_content
 	    BOOLEAN is_sun 
@@ -206,6 +209,36 @@ erDiagram
 	   	TIMESTAMPTZ insert_dt
 		TIMESTAMPTZ update_dt
 	}
+
+	book_item {
+		BIGSERIAL book_item_code PK
+		UUID book_uuid
+		varchar(255) title
+		varchar(255) author
+		varchar(255) publisher
+		varchar(50) isbn
+		TEXT description
+		TEXT cover_image
+		BigInt genre_code
+		varchar(50) curation_type_code
+		varchar(10) language_code
+		TIMESTAMPTZ insert_dt
+	}
+
+	user_book_status {
+		BIGSERIAL status_code 
+	    UUID user_detail_code 
+	    BigInt book_item_code 
+	    status 
+	    Int progress 
+	    Int rating  
+	    TEXT review 
+	    DATE start_date 
+	    DATE finish_date 
+	    TIMESTAMPTZ insert_dt 
+	    TIMESTAMPTZ update_dt 
+	}
+
 
 
 ```
