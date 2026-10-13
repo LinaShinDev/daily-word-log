@@ -229,7 +229,7 @@ erDiagram
 		BIGSERIAL status_code PK
 	    UUID user_detail_code 
 	    BigInt book_item_code 
-	    status 
+	    Varchar(20) status 
 	    Int progress 
 	    Int rating  
 	    TEXT review 
